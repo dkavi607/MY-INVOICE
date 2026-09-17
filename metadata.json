@@ -1,0 +1,6 @@
+{
+  "name": "MY INVOICE",
+  "description": "Create professional invoices in seconds. Free invoice maker with PDF download, customizable templates, instant calculations, and print-ready formats with no signup required.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,28 @@
+import { CurrencyOption } from '../types';
+
+export const CURRENCIES: CurrencyOption[] = [
+  { code: 'USD', symbol: '$', name: 'US Dollar ($)' },
+  { code: 'LKR', symbol: 'Rs. ', name: 'Sri Lankan Rupee (LKR / රු)' },
+  { code: 'EUR', symbol: '€', name: 'Euro (€)' },
+  { code: 'GBP', symbol: '£', name: 'British Pound (£)' },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee (₹)' },
+  { code: 'CAD', symbol: 'CA$', name: 'Canadian Dollar (CA$)' },
+  { code: 'AUD', symbol: 'A$', name: 'Australian Dollar (A$)' },
+  { code: 'JPY', symbol: '¥', name: 'Japanese Yen (¥)' },
+  { code: 'SGD', symbol: 'S$', name: 'Singapore Dollar (S$)' },
+  { code: 'AED', symbol: 'AED', name: 'UAE Dirham (AED)' },
+  { code: 'CHF', symbol: 'CHF', name: 'Swiss Franc (CHF)' },
+  { code: 'CNY', symbol: '¥', name: 'Chinese Yuan (¥)' },
+  { code: 'NZD', symbol: 'NZ$', name: 'New Zealand Dollar (NZ$)' },
+  { code: 'ZAR', symbol: 'R', name: 'South African Rand (R)' },
+  { code: 'BRL', symbol: 'R$', name: 'Brazilian Real (R$)' },
+  { code: 'MXN', symbol: 'MX$', name: 'Mexican Peso (MX$)' },
+  { code: 'SEK', symbol: 'kr', name: 'Swedish Krona (kr)' },
+  { code: 'NOK', symbol: 'kr', name: 'Norwegian Krone (kr)' },
+  { code: 'DKK', symbol: 'kr', name: 'Danish Krone (kr)' },
+  { code: 'PLN', symbol: 'zł', name: 'Polish Zloty (zł)' },
+  { code: 'THB', symbol: '฿', name: 'Thai Baht (฿)' },
+  { code: 'MYR', symbol: 'RM', name: 'Malaysian Ringgit (RM)' },
+  { code: 'PKR', symbol: 'Rs', name: 'Pakistani Rupee (Rs)' },
+  { code: 'BDT', symbol: '৳', name: 'Bangladeshi Taka (৳)' },
+];
