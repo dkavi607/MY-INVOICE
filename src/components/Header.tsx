@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { FileText, Sparkles, History, Menu, X, PlusCircle } from 'lucide-react';
+import { FileText, Sparkles, History, Menu, X, PlusCircle, Download, Printer } from 'lucide-react';
 
 interface HeaderProps {
   onLoadSample: () => void;
   onOpenHistory: () => void;
   onNewInvoice: () => void;
+  onDownloadPDF?: () => void;
+  onPrint?: () => void;
   savedCount: number;
 }
 
@@ -12,6 +14,8 @@ export const Header: React.FC<HeaderProps> = ({
   onLoadSample,
   onOpenHistory,
   onNewInvoice,
+  onDownloadPDF,
+  onPrint,
   savedCount,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-2xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-2xs no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
@@ -80,6 +84,30 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Action CTAs */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {onPrint && (
+              <button
+                type="button"
+                onClick={onPrint}
+                className="hidden xl:flex text-xs font-semibold text-gray-700 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-xl transition-colors items-center gap-1.5"
+                title="Print Invoice (Ctrl+P)"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                <span>Print</span>
+              </button>
+            )}
+
+            {onDownloadPDF && (
+              <button
+                type="button"
+                onClick={onDownloadPDF}
+                className="hidden sm:flex text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 px-3.5 py-2 rounded-xl shadow-2xs hover:shadow-xs transition-all items-center gap-1.5"
+                title="Download PDF Invoice"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download PDF</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={onOpenHistory}
@@ -111,10 +139,10 @@ export const Header: React.FC<HeaderProps> = ({
                 onNewInvoice();
                 scrollToSection('tool-section');
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all flex items-center gap-1.5"
+              className="bg-gray-900 hover:bg-black text-white font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-xs transition-all flex items-center gap-1.5"
             >
               <PlusCircle className="w-4 h-4" />
-              <span>Create Invoice</span>
+              <span className="hidden sm:inline">New</span>
             </button>
 
             {/* Mobile Menu Button */}
@@ -133,6 +161,34 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+          {onDownloadPDF && (
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onDownloadPDF();
+              }}
+              className="w-full text-left py-2.5 px-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Download PDF Invoice
+            </button>
+          )}
+
+          {onPrint && (
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onPrint();
+              }}
+              className="w-full text-left py-2 px-3 text-sm font-semibold text-gray-700 hover:bg-gray-100 rounded-lg flex items-center gap-2"
+            >
+              <Printer className="w-4 h-4 text-gray-500" />
+              Print Invoice
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => scrollToSection('tool-section')}

@@ -149,6 +149,19 @@ export default function App() {
     }
   };
 
+  const handleTriggerDownload = () => {
+    const btn = document.getElementById('download-pdf-btn');
+    if (btn) {
+      btn.click();
+    } else {
+      window.print();
+    }
+  };
+
+  const handleTriggerPrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50/80 flex flex-col font-sans text-gray-800 selection:bg-blue-600 selection:text-white pb-20 lg:pb-0">
       {/* Top Google AdSense Banner (728x90) */}
@@ -159,6 +172,8 @@ export default function App() {
         onLoadSample={handleLoadSample}
         onOpenHistory={() => setHistoryModalOpen(true)}
         onNewInvoice={handleNewInvoice}
+        onDownloadPDF={handleTriggerDownload}
+        onPrint={handleTriggerPrint}
         savedCount={savedInvoices.length}
       />
 

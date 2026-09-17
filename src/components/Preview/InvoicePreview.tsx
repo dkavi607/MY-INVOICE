@@ -58,8 +58,8 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
       // Trigger festive celebration confetti
       try {
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 70,
+          spread: 60,
           origin: { y: 0.6 },
         });
       } catch (e) {
@@ -70,7 +70,14 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
         setDownloadSuccess(false);
       }, 4000);
     } catch (err: any) {
-      alert(`PDF Generation notice: ${err.message || 'Error occurred'}`);
+      console.warn('PDF Generator encountered notice:', err);
+      // If canvas generation fails or is blocked by an iframe sandbox, prompt print fallback
+      const usePrintFallback = window.confirm(
+        'Direct canvas PDF download is processing or blocked by browser settings. Would you like to use the Print Dialog to Save as PDF instead?'
+      );
+      if (usePrintFallback) {
+        window.print();
+      }
     } finally {
       setDownloading(false);
       setProgressMsg('');
